@@ -1,0 +1,60 @@
+<div *ngIf="artist" class="artist-box">
+    <div id="artist-head-card">
+      <div class="artist">
+        <img src="{{url + 'get-image-artist/' + artist.image}}" *ngIf="artist.image && artist.image !== 'null'">
+      </div>
+      <div class="data">
+        <h1>{{artist.name}}</h1>
+        <p class="description">
+          {{artist.description}}
+        </p>
+         <!-- ROUTER LINK ALBUMS -->
+    <a  *ngIf="identity.role=='ROLE_ADMIN'" [routerLink]="['/crear-album',artist._id]" class="btn btn-default">Añadir album</a> 
+    
+      </div>
+    </div>
+  
+    
+    <div class="clearfix"></div>
+  
+    <div id="gallery-albums" *ngIf="albums">
+  
+      <ul class="album-list">
+        <li *ngFor="let album of albums" class="col-lg-4 album-item">
+          <div class="album-image">
+            <img src="{{url+'get-image-album/'+album.image}}"/>
+          </div>
+          <div class="album-name">
+            <p>
+              <a [routerLink]="['/album',album._id]">
+                {{album.title}}
+            </a>
+            </p>
+            <p>
+              <a [routerLink]="['/artista',album.artist._id]">
+                {{album.artist.name}}
+            </a>
+            </p>
+            
+            <a class="btn-floating halfway-fab transparent z-depth-0" [routerLink]="['/editar-album', album._id]" *ngIf="identity.role =='ROLE_ADMIN'" id="right-button"
+                    matTooltip="Editar">
+                        <i class="btn btn-info">edit</i>
+                    </a>
+                    <a class="btn btn-danger" (click)="onDeleteConfirm(album._id)" *ngIf="identity.role =='ROLE_ADMIN'" id="left-button">
+                        <i class="material-icons red-text text-darken-3">delete</i>
+                    </a>
+                    <div class="panel-confirmacion" *ngIf="confirmado == album._id">
+                        <label>¿Eliminar?</label>
+                        <div class="center-align">
+                            <button class="btn btn-danger" *ngIf="identity.role =='ROLE_ADMIN'" (click)="onDeleteAlbum(album._id)">Si</button>
+                            <button class="btn btn-info" *ngIf="identity.role =='ROLE_ADMIN'" (click)="onCancelAlbum()">No</button>
+                        </div>  
+                    </div>
+          </div>
+        </li>
+      </ul>
+    
+</div>
+
+  </div>
+  
