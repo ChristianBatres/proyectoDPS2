@@ -138,18 +138,20 @@ function getSongs(req, res){
      }
  }
 
- function getSongFile(req, res){
-     var imageFile = req.params.songFile;
-     var path_file = '/uploads/songs'+imageFile;
-     fs.exists(path_file, function(exists){
-         if (exists) {
-             res.sendFile(path.resolve(path_file));
-         }else{
-             res.status(200).send({message: 'No existe el fichero de audio... '});
-         }
+ function getSongFile(req, res) {
+    var songFile = req.params.songFile;
+    var path_file = './uploads/songs/' + songFile;
 
-     });
- }
+    fs.exists(path_file, function(exists) {
+        //si la imágen existe
+        if (exists) {
+            //respuesta que manda un fichero
+            res.sendFile(path.resolve(path_file));
+        } else { //sino
+            res.status(200).send({ message: 'No existe la canción' });
+        }
+    });
+}
 
 module.exports = {
  getSong,

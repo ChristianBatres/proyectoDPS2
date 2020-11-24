@@ -10,21 +10,13 @@
         </h1>
     
         <nav id="navigation">
-            <a href="#">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            Buscar
-            </a>
+
             <a [routerLink]="['/artistas', 1]" [routerLinkActive]="['active']">
                 <span class="glyphicon glyphicon-star"></span>
                 Artistas
               </a>
     
-            <a href="#">
-                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-                Albums
-          
-            </a>
-    
+
     
           
     
@@ -58,6 +50,8 @@
         <div *ngIf="identity" class="central col-lg-11">
        
             <router-outlet></router-outlet>
+            <div class="clearfix" ></div>
+            <player class="player" ></player>
       </div><!--FIN  col lg 11-->
 
       <div class="col-lg-11" *ngIf="!identity">

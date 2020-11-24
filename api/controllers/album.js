@@ -49,6 +49,7 @@ function getAlbums(req,res){
 }
 */
 
+//método de sacar todos los albums
 function getAlbums(req, res) {
     //tenemos que sacar todos los album de un artista
     var artistId = req.params.artist;
@@ -74,7 +75,6 @@ function getAlbums(req, res) {
         }
     });
 }
-
 
 function saveAlbum(req, res){
     var album = new Album();
